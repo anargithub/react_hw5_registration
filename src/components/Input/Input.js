@@ -1,18 +1,19 @@
 // import "./Input.css";
 import React from "react";
 
-export default function Input({ id, placeholder, name, value, onChange, error }){
+export default function Input({ placeholder, name, value, setInputValue, submitted }){
     return (
         <div>
             <input
-                onChange={onChange}
+                onChange={(e) => {setInputValue(e.target.value);}}
                 value={value}
-                id={id}
                 placeholder={placeholder}
                 name={name}
-                className={`form-field ${error ? "error" : ""}`}
+                className={`form-field`}
             />
-            {error && <span>{error}</span>}
+            {submitted && !value ? (
+            <span>Please enter a {placeholder}</span>
+            ) : null}
         </div>
     )
 }
